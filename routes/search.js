@@ -4,6 +4,7 @@ let path = require('path');
 const router = express.Router();
 let app = express();
 
+
 app.use(express.static(path.join(__dirname,'public')));
 app.get('/search', (req,res) => {
     res.sendFile(path.join(__dirname,'../','views','search.html'));
