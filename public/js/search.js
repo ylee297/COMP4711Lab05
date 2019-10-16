@@ -69,7 +69,7 @@ async function addition() {
     //     list.removeChild(list.firstChild);
     // }
 
-    const url = 'http://localhost:3000/search/add'
+    const url = '/search/add'
     let newArtist = {"name": newArtistInfo[0].value, "disc": newArtistInfo[1].value, "img": newArtistInfo[2].value};
 
     const setting = {
@@ -102,10 +102,9 @@ async function addition() {
     callArtistList();
     
 }
-
 // delete artist button
 async function deleteArtist(index){
-    const url = 'http://localhost:3000/search/delete'
+    const url = '/search/delete'
     let deleteIndex = {"index" : index}
     const setting = {
         method: 'POST',
@@ -124,7 +123,7 @@ async function deleteArtist(index){
 // sort the result by letters typed in
 async function searchQuery(){
     let query = document.getElementById("searchValue").value;
-    const url = 'http://localhost:3000/search/sortedSearch'
+    const url = '/search/sortedSearch'
     let queryString = {"query" : query}
     const setting = {
         method: 'POST',
