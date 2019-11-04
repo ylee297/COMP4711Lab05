@@ -3,6 +3,6 @@
         "node_modules{,/**}",
         ".vscode{,/**}"
     ],
-    "appService.defaultWebAppToDeploy": "/subscriptions/f5d36dee-38fb-4ed6-8f8c-9468ae11ed21/resourceGroups/COMP4711/providers/Microsoft.Web/sites/COMP4711Lab05",
-    "appService.deploySubpath": ""
+    "appService.deploySubpath": "",
+    "appService.defaultWebAppToDeploy": "/subscriptions/f5d36dee-38fb-4ed6-8f8c-9468ae11ed21/resourceGroups/NodeRC/providers/Microsoft.Web/sites/LastNodeLab"
 }

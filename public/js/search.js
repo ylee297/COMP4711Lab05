@@ -1,20 +1,12 @@
-//saved artist list
-//https://randomuser.me/api/portraits/med/women/3.jpg
-// var artistList = [
-//     {name : "Younhee Lee", disc : "A Korean international student in BCIT", img: "https://randomuser.me/api/portraits/med/women/1.jpg"},
-//     {name : "MOMO", disc : "Bad joke talker, and he recently got new hair-cut", img: "https://randomuser.me/api/portraits/med/men/1.jpg"},
-//     {name : "D'arcy", disc : "Rainbow color hair instructor", img: "https://randomuser.me/api/portraits/med/women/2.jpg"},
-//     {name : "Amanda", disc : "Be prepared for dodgeball on Tuesday", img: "https://randomuser.me/api/portraits/med/women/3.jpg"},
-//     {name : "Bella", disc : "I am Yuanyuan. I am exempted for Blaw and Operating System. ", img: "https://randomuser.me/api/portraits/med/women/4.jpg"}
-// ];
-// localStorage.setItem('artistList', JSON.stringify(new Array()));
 
-var globalArtists = [];
-var artistsLength = 0;
+let globalArtists = [];
+let artistsLength = 0;
+
+
 // current artist list
 async function callArtistList(){
     globalArtists = [];
-    const response = await fetch("/data")
+    const response = await fetch("../data")
     .then(function(res){
         return res.json();
     })
@@ -29,28 +21,23 @@ async function callArtistList(){
     while (wrapper.firstChild) {
         wrapper.removeChild(wrapper.firstChild);
     }
-
+    if(artistsLength == 0){
+        document.getElementById('directory').style.display = 'none';
+    } else {
+        document.getElementById('directory').style.display = 'block';
+    }
     for(let i = 0; i < artistsLength; i++){
         createArtist(i);
     }
 
-    
-    // if (localStorage.getItem('artistList')){
-    //     let data = localStorage.getItem('artistList')
-    //     artists = JSON.parse(data);
-    //     artistsLength = artists.length 
-    // } else {
-    //     artistsLength = 0;
-    // }    
     return response;
 }
-callArtistList();
 
 
 
 
-var newArtistInfo = document.getElementsByClassName("newArtistInfo");
-var x = document.getElementById("addArtistDiv");
+let newArtistInfo = document.getElementsByClassName("newArtistInfo");
+let x = document.getElementById("addArtistDiv");
 
 //toggle add artist
 function toggleAddMenu() {
@@ -64,11 +51,8 @@ function toggleAddMenu() {
 
 // add artist button
 async function addition() {
-    // let list = document.getElementById("artists");
-    // while(list.firstChild){
-    //     list.removeChild(list.firstChild);
-    // }
-
+    let artInfo = document.getElementsByClassName("newArtistInfo");
+    
     const url = '/search/add'
     let newArtist = {"name": newArtistInfo[0].value, "disc": newArtistInfo[1].value, "img": newArtistInfo[2].value};
 
@@ -81,24 +65,14 @@ async function addition() {
     };
 
 
-    const response = await fetch(url, setting);
+    await fetch(url, setting);
   
-   
 
-
-    // let storage;
-    // let newArtist;
-    // if(JSON.parse(localStorage.getItem('artistList'))) {
-    //     newArtist = {name: newArtistInfo[0].value, disc: newArtistInfo[1].value, img: newArtistInfo[2].value};
-    //     storage = JSON.parse(localStorage.getItem('artistList'));
-    //     storage.push(newArtist);
-    //     localStorage.setItem('artistList', JSON.stringify(storage));
-    // } else {
-    //     newArtist = [{name: newArtistInfo[0].value, disc: newArtistInfo[1].value, img: newArtistInfo[2].value}];
-    //     localStorage.setItem('artistList', JSON.stringify(newArtist));
-    // }
     x.style.display = "none";
     
+    for(let i = 0; i < artInfo.length; i++){
+        newArtistInfo[i].value = '';
+    }
     callArtistList();
     
 }
@@ -137,13 +111,6 @@ async function searchQuery(){
     const data = response.json();
     let indexArray = new Array();
     await data.then(res => { indexArray = res.indexes});
-
-    // let artists = JSON.parse(localStorage.getItem('artistList'));
-    // for(let i = 0; i < artists.length; i++){
-    //     if(artists[i].name.search(query)>=0){
-    //         indexArray.push(i);
-    //     }
-    // }
 
 
     let wrapper = document.getElementById('artists');
@@ -201,3 +168,6 @@ function createArtist(index){
 
     wrapper.appendChild(person);
 }
+
+
+callArtistList();

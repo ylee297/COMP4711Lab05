@@ -1,3 +1,9 @@
+body {
+    height:100%;
+}
+html {
+    height:100%;
+}
 #searchBar{
     border-color:lightgrey;
     border-style: solid;  
@@ -61,11 +67,11 @@
 
 
 #directory{
+    display: none;
     border-color:lightgrey;
     border-style: solid;  
     border-width: 1px;
     width: 35%;
-    height:20%;
     margin: auto;
 }
 
@@ -133,4 +139,25 @@
 }
 #deleteDiv Button:hover{
     background-color: darkred;
+}
+
+
+#nav{
+    background-color:#F2D006;
+    height: 10%;
+    margin-bottom:5%;
+}
+
+#logoutButton{
+    background-color: gainsboro;
+    float:right;
+    margin:1%;
+    padding:1%;
+    width:10%;
+    font-size: 100%;
+    font-weight: bold;
+}
+#logoutButton:hover{
+    background-color: grey;
+    color:white;
 }
